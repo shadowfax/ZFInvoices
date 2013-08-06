@@ -1,0 +1,53 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap-responsive.min.css')
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                      ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+                                      ->prependFile($this->basePath() . '/js/jquery.min.js') ?>
+
+    </head>
+    <body>
+		<div class="container">
+		    <div class="row">
+		    <br /><br /><br />
+		        <?php
+		        $form = $this->form;
+		        $form->prepare();
+		         
+		        echo $this->form()->openTag($form);
+		        // Despliega el campo "Nombre de Usuario", con su label y sus posibles errores
+		        echo $this->formLabel($form->get('username'));
+		        echo $this->formText($form->get('username'));
+		        echo $this->formElementErrors($form->get('username'));
+		         
+		        // Similar al campo superior
+		        echo $this->formLabel($form->get('password'));
+		        echo $this->formPassword($form->get('password'));
+		        echo $this->formElementErrors($form->get('password'));
+		 
+		        // Despliega el elemento CSRF como hidden        
+		        echo $this->formHidden($form->get('csrf'));
+		        echo $this->formElementErrors($form->get('csrf'));
+		         
+		        // Muestra el boton
+		        echo $this->formSubmit($form->get('submit'));
+		         
+		        echo $this->form()->closeTag();
+		        ?>
+		    </div>
+		</div>
+	</body>
+</html>
